@@ -12,10 +12,11 @@ const ConnectOrga = ({ setTokenHeader }) => {
 }
 
 const Container = styled.div`
-    height: 100%;
+    padding-top: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #dbdbdb;
 `;
 
 export default ConnectOrga;

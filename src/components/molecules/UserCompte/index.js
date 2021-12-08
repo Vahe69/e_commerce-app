@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const UserCompte = () => {
 
-    const tokenHeader = localStorage.getItem("tokenHearder");
+    const tokenHeader = localStorage.getItem("tokenHeader");
 
     const [user, setUser] = useState();
 
@@ -18,6 +18,7 @@ const UserCompte = () => {
             }).then((response) => {
                 setUser(response.data);
             }).catch((error) => {
+                console.log(error);
                 if(error.response.status === 401){
                     var storage = window.localStorage;
                     storage.clear();
@@ -35,9 +36,9 @@ const UserCompte = () => {
     }, [tokenHeader]);
 
     const styleLabel = {
-        "text-align": "initial",
-        "font-weight": "700",
-        "margin-bottom": "5%"
+        "textAlign": "initial",
+        "fontWeight": "700",
+        "marginBottom": "5%"
     }
 
     const styleLabelError = {
@@ -51,26 +52,25 @@ const UserCompte = () => {
     return (
         <Container>
             <Label id="messError" style={ styleLabelError }/>
-            {user.map(e => {
-                return(
-                    <>
-                        <DivInfo>
-                            <Label attribut="Email : " style={ styleLabel } />
-                            <Label attribut={e.email} />
-                        </DivInfo>
-
-                        <DivInfo>
-                            <Label attribut="Nom : " style={ styleLabel } />
-                            <Label attribut={e.lastname} />
-                        </DivInfo>
-
-                        <DivInfo>
-                            <Label attribut="Prénom : " style={ styleLabel } />
-                            <Label attribut={e.firstname} />
-                        </DivInfo>
-                    </>
-                )
-            })}
+            {user ? 
+            <>
+                <DivInfo>
+                    <Label attribut="Email : " style={styleLabel} />
+                    <Label attribut={user.mail} />
+                </DivInfo>
+                
+                <DivInfo>
+                    <Label attribut="Nom : " style={styleLabel} />
+                    <Label attribut={user.nom} />
+                </DivInfo>
+                
+                <DivInfo>
+                    <Label attribut="Prénom : " style={styleLabel} />
+                    <Label attribut={user.prenom} />
+                </DivInfo>
+            </>
+            : <></>
+            }
         </Container>
     );
 }
@@ -78,7 +78,7 @@ const UserCompte = () => {
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    font-size: 25px;
+    fontSize: 25px;
     width: 25%;
     margin: auto;
 `;

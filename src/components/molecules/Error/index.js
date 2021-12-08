@@ -10,7 +10,7 @@ const Error = () => {
 
     return(
         <Container>
-            <Label name="Erreur 404 not found" style={style}/>
+            <Label attribut="Erreur 404 not found" style={style}/>
         </Container>
     );
 }

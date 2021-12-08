@@ -6,8 +6,8 @@ import { UserCompte } from '../../molecules';
 const CompteOrga = () => {
 
     const styleTitle = {
-        "font-weight": "800",
-        "font-size": "35px"
+        "fontWeight": "800",
+        "fontSize": "35px"
     }
 
     return (

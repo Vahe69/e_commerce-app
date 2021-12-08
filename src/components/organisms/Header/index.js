@@ -6,7 +6,7 @@ import styled from 'styled-components';
 const Header = ({ tokenHeader }) => {
 
     const styleLink = {
-        "width": "80%"
+        "width": "100%"
     }
 
     return (
@@ -25,7 +25,6 @@ const Container = styled.header`
     align-items: center;
     background-color: gray;
     margin: auto;
-    height: 10%;
 `;
 
 export default Header;

@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ListProduct } from '../../molecules';
+import { FormRegister } from '../../molecules';
 
 const RegisterOrga = () => {
 
     return (
         <Container>
-            <ListProduct />
+            <FormRegister />
         </Container>
     );
 }

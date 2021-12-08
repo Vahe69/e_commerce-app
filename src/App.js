@@ -6,7 +6,7 @@ import {
   Route
 } from "react-router-dom";
 import React, { useEffect } from 'react';
-import { Compte, Connect, ErrorPage, Home } from './pages';
+import { Compte, Connect, ErrorPage, Home, Register } from './pages';
 
 function App() {
   const storedValueAsTokenHeader = localStorage.getItem("tokenHeader")
@@ -33,11 +33,15 @@ function App() {
           </Route>
 
           <Route path="/userConnect" exact>
-            <Connect setTokenHeader={ setTokenHeader } />
+            <Connect setTokenHeader={ setTokenHeader } tokenHeader={ tokenHeader }/>
           </Route>
 
           <Route path="/userCompte" exact>
             <Compte tokenHeader={ tokenHeader } />
+          </Route>
+
+          <Route path="/newUser" exact>
+            <Register tokenHeader={ tokenHeader }/>
           </Route>
 
           <Route path="/404" exact>

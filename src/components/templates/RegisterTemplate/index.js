@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { RegisterOrga } from "../../organisms";
+import { Header, RegisterOrga } from "../../organisms";
 
-const HomeTemplate = () => {
+const HomeTemplate = ({ tokenHeader }) => {
     return (
         <Container>
+            <Header tokenHeader={ tokenHeader }/>
             <RegisterOrga />
         </Container>
     );

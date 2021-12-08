@@ -3,9 +3,12 @@ import { Input, Label } from "../../atoms";
 import styled from "styled-components";
 import axios from 'axios';
 
-const FormConnect = ({ setTokenHeader }) => {
+const FormRegister = () => {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
+    const [verifiedPassword, setVerifiedPassword] = React.useState("");
+    const [nom, setNom] = React.useState("");
+    const [prenom, setPrenom] = React.useState("");
 
     const handleEmailChange = (event) => { 
         setEmail(event.target.value);
@@ -15,6 +18,16 @@ const FormConnect = ({ setTokenHeader }) => {
         setPassword(event.target.value);
     }
 
+    const handleVerifiedPassword = (event) => { 
+        setVerifiedPassword(event.target.value);
+    }
+    const handleNom = (event) => { 
+        setNom(event.target.value);
+    }
+    const handlePrenom = (event) => { 
+        setPrenom(event.target.value);
+    }
+
     const styleLabel = {
         "textAlign": "justify",
         "marginBottom": "3%",
@@ -22,11 +35,12 @@ const FormConnect = ({ setTokenHeader }) => {
     }
 
     const styleLabelError = {
-        "textAlign": "justify",
         "marginBottom": "2%",
-        "fontSize": "16px",
+        "fontSize": "25px",
         "color": "red",
-        "display": "none"
+        "display": "none",
+        "textAlign": "center",
+        "fontWeight": "600"
     }
 
     const styleSubmit = {
@@ -46,35 +60,17 @@ const FormConnect = ({ setTokenHeader }) => {
         "fontSize" : "18px"
     }
 
-    const handleRegister = () => {
-        window.location = window.location.origin + "/newUser";
-    }
-
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post(process.env.REACT_APP_URL_API + 'users/auth', {
+        axios.post(process.env.REACT_APP_URL_API + 'users/add', {
             email,
-            password
+            password,
+            verifiedPassword,
+            nom,
+            prenom
         }).then((response) => {
-            setTokenHeader(`Bearer ${response.data.access_token}`);
-            axios.interceptors.request.use(
-                config => {
-                    config.headers.authorization = `Bearer ${response.data.access_token}`;
-                    return config;
-                },
-                error => {
-                    return Promise.reject(error);
-                }
-            );
-            axios.get(process.env.REACT_APP_URL_API + 'users/auth')
-            .then((response) => {
-                window.location = "http://" + window.location.host;
-            }).catch((error) => {
-                console.log(error);
-                var messError = document.getElementById("messError");
-                messError.style.display = "block";
-                messError.innerHTML = "Une erreur est survenue.";
-            })
+            window.alert("Votre compte a été créer, veuillez vous connecter");
+            window.location = window.location.origin + "/userConnect";
         }).catch((error) => {
             var messError = document.getElementById("messError");
             messError.style.display = "block";
@@ -87,20 +83,33 @@ const FormConnect = ({ setTokenHeader }) => {
             <form onSubmit={handleSubmit}>
                 <Label id="messError" style={ styleLabelError }/>
 
-                <Login>
+                <DivInput>
                     <Label attribut="Email utilisateur :" style={ styleLabel }/>
                     <Input value={email} id="email" type="email" required={true} name="login" style={ styleInput } onChange={ handleEmailChange } />
-                </Login>
+                </DivInput>
 
-                <Password>
+                <DivInput>
                     <Label attribut="Mot de passe :" style={ styleLabel }/>
                     <Input value={password} id="password" type="password" required={true} name="password" style={ styleInput } onChange={ handlePasswordChange }/>
-                </Password>
+                </DivInput>
 
-                <Label attribut="Pas de compte ? S'enregistrer." onClick={ handleRegister } />
+                <DivInput>
+                    <Label attribut="Vérification mot de passe :" style={ styleLabel }/>
+                    <Input value={verifiedPassword} id="veriPassword" type="password" required={true} name="veriPassword" style={ styleInput } onChange={ handleVerifiedPassword }/>
+                </DivInput>
+
+                <DivInput>
+                    <Label attribut="Nom :" style={ styleLabel }/>
+                    <Input value={nom} id="nom" type="text" required={true} name="nom" style={ styleInput } onChange={ handleNom }/>
+                </DivInput>
+
+                <DivInput>
+                    <Label attribut="Prénom :" style={ styleLabel }/>
+                    <Input value={prenom} id="prenom" type="text" required={true} name="prenom" style={ styleInput } onChange={ handlePrenom }/>
+                </DivInput>
 
                 <Submit>
-                    <Input type="submit" style={ styleSubmit } value="Connexion" />
+                    <Input type="submit" style={ styleSubmit } value="Création" />
                 </Submit>
             </form>
         </Container>
@@ -108,26 +117,20 @@ const FormConnect = ({ setTokenHeader }) => {
 }
 
 const Container = styled.div`
-    padding: 5%;
-    width: 25%;
+    padding-bottom: 2%;
+    width: 100%;
     background-color: white;
     border-radius: 5%;
 `;
 
-const Login = styled.div`
+const DivInput = styled.div`
     display: flex;
     flex-direction: column;
-    margin: 10%;
-`;
-
-const Password = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin: 10%;
+    margin: 5%;
 `;
 
 const Submit = styled.div`
     margin: 10%;
 `;
 
-export default FormConnect;
+export default FormRegister;
