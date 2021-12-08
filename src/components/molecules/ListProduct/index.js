@@ -36,12 +36,12 @@ const ListProduct = () => {
 
     const styleLabel = {
         "fontSize": "25px",
-        "fontWieght": "600"
+        "fontWeight": "600"
     }
 
     const styleLabelDesc = {
         "fontSize": "20px",
-        "fontWieght": "600"
+        "fontWeight": "600"
     }
 
     const styleLabelError = {
@@ -50,6 +50,19 @@ const ListProduct = () => {
         "fontSize": "16px",
         "color": "red",
         "display": "none"
+    }
+
+    const styleLabelCom = {
+        "fontSize": "25px",
+        "fontWeight": "600",
+        "marginTop": "5%",
+        "marginBottom": "2%",
+        "padding": "1%",
+        "border": "solid 2px"
+    }
+
+    const handleCommander = (event) => {
+        console.log(event.target.id);
     }
 
     return (
@@ -65,10 +78,11 @@ const ListProduct = () => {
                     const price = `Prix : ${e.prix}`;
                     return(
                         <DivProduct key={key}>
-                            <Image id={e.id} src={img} alt={alt} style={ styleImage }/>
-                            <Label id={e.id} attribut={e.name} style={styleLabel}/>
-                            <Label id={e.id} attribut={e.description} style={styleLabelDesc}/>
-                            <Label id={e.id} attribut={price} style={styleLabel}/>
+                            <Image src={img} alt={alt} style={ styleImage }/>
+                            <Label attribut={e.name} style={styleLabel}/>
+                            <Label attribut={e.description} style={styleLabelDesc}/>
+                            <Label attribut={price} style={styleLabel}/>
+                            <Label id={key} attribut="Commander" style={styleLabelCom} onClick={ handleCommander }/>
                         </DivProduct>
                     )
                 })}
