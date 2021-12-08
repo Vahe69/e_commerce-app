@@ -1,18 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Input, Label } from "../../atoms";
 import styled from "styled-components";
 import axios from 'axios';
 
-const FormConnect = ({ setTokenHeader, user }) => {
-    const storedValueAsUserId = localStorage.getItem("userId")
-    const [userId, setUserId] = React.useState(
-        storedValueAsUserId ? storedValueAsUserId : ""
-    )
-
-    useEffect(() => {
-        localStorage.setItem("userId", userId);
-    }, [userId]);
-
+const FormConnect = ({ setTokenHeader }) => {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
 
@@ -55,31 +46,13 @@ const FormConnect = ({ setTokenHeader, user }) => {
         "fontSize" : "18px"
     }
 
+    const handleRegister = () => {
+        console.log("test");
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        var messError = document.getElementById("messError");
-        messError.style.display = "none";
-        let exist = false;
-        user.map(e => {
-            if(email === e.email){
-                exist = true;
-                if(password === e.password){
-                    setTokenHeader("154876434843434");
-                    setUserId(e.id);
-                    window.location = "http://" + window.location.host;
-                }else{
-                    messError.style.display = "block";
-                    messError.innerHTML = "Votre email ou votre mot de passe est incorrect.";
-                }
-
-            }
-            return true;
-        })
-        if(!exist){
-            messError.style.display = "block";
-            messError.innerHTML = "Votre email ou votre mot de passe est incorrect.";
-        }
-        /* axios.post(process.env.REACT_APP_URL_API + 'user/auth', {
+        axios.post(process.env.REACT_APP_URL_API + 'users/auth', {
             email,
             password
         }).then((response) => {
@@ -93,11 +66,12 @@ const FormConnect = ({ setTokenHeader, user }) => {
                     return Promise.reject(error);
                 }
             );
-            axios.get(process.env.REACT_APP_URL_API + 'user/auth')
+            console.log(response.data);
+            axios.get(process.env.REACT_APP_URL_API + 'users/auth')
             .then((response) => {
-                setTypeUser(response.data.type);
-                window.location = window.location + "home";
+                window.location = "http://" + window.location.host;
             }).catch((error) => {
+                console.log(error.message);
                 var messError = document.getElementById("messError");
                 messError.style.display = "block";
                 messError.innerHTML = "Une erreur est survenue.";
@@ -106,7 +80,7 @@ const FormConnect = ({ setTokenHeader, user }) => {
             var messError = document.getElementById("messError");
             messError.style.display = "block";
             messError.innerHTML = error.response.data.message;
-        }); */
+        });
     }
 
     return(
@@ -123,6 +97,8 @@ const FormConnect = ({ setTokenHeader, user }) => {
                     <Label attribut="Mot de passe :" style={ styleLabel }/>
                     <Input value={password} id="password" type="password" required={true} name="password" style={ styleInput } onChange={ handlePasswordChange }/>
                 </Password>
+
+                <Label attribut="Pas de compte ? S'enregistrer" onClick={ handleRegister } />
 
                 <Submit>
                     <Input type="submit" style={ styleSubmit } value="Connexion" />

@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { ConnectTemplate } from "../../components/templates";
 
-const Connect = ({ setTokenHeader, user }) => {
+const Connect = ({ setTokenHeader}) => {
     return (
         <Container>
-            <ConnectTemplate setTokenHeader={ setTokenHeader } user={ user } />
+            <ConnectTemplate setTokenHeader={ setTokenHeader } />
         </Container>
     );
 }

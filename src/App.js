@@ -1,10 +1,12 @@
 import './App.css';
 import {
   BrowserRouter as Router,
+  Redirect,
+  Switch,
   Route
 } from "react-router-dom";
 import React, { useEffect } from 'react';
-import { Compte, Connect, Home } from './pages';
+import { Compte, Connect, ErrorPage, Home } from './pages';
 
 function App() {
   const storedValueAsTokenHeader = localStorage.getItem("tokenHeader")
@@ -16,23 +18,7 @@ function App() {
     localStorage.setItem("tokenHeader", tokenHeader);
   }, [tokenHeader]);
 
-  const user = [
-    {
-      id: "1",
-      email: "test.test@gmail.com",
-      password: "123456",
-      firstname: "Jean",
-      lastname: "Bois"
-    },
-    {
-      id: "2",
-      email: "test.test2@gmail.com",
-      password: "654321",
-      firstname: "Pierre",
-      lastname: "Durant"
-    }
-  ];
-
+  // Une fois la fenêtre fermer, on va clear le stockage local.
   window.close = function (e) {
     var storage = window.localStorage;
     storage.clear()
@@ -41,17 +27,27 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Route path="/" exact>
-          <Home tokenHeader={ tokenHeader }/>
-        </Route>
+        <Switch>
+          <Route path="/" exact>
+            <Home tokenHeader={ tokenHeader }/>
+          </Route>
 
-        <Route path="/userConnect" exact>
-          <Connect setTokenHeader={ setTokenHeader } user={ user } />
-        </Route>
+          <Route path="/userConnect" exact>
+            <Connect setTokenHeader={ setTokenHeader } />
+          </Route>
 
-        <Route path="/userCompte" exact>
-          <Compte tokenHeader={ tokenHeader } user={ user } />
-        </Route>
+          <Route path="/userCompte" exact>
+            <Compte tokenHeader={ tokenHeader } />
+          </Route>
+
+          <Route path="/404" exact>
+            <ErrorPage />
+          </Route>
+
+          <Route path="*">
+            <Redirect to="/404" />
+          </Route>
+        </Switch>
       </Router>
     </div>
   );

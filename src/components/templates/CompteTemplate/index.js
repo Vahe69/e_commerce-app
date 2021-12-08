@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { CompteOrga, Footer, Header } from "../../organisms";
 
-const CompteTemplate = ({ tokenHeader, user }) => {
+const CompteTemplate = ({ tokenHeader }) => {
     return (
         <Container>
             <Header tokenHeader={ tokenHeader } />
-            <CompteOrga user={ user } />
+            <CompteOrga />
             <Footer />
         </Container>
     );

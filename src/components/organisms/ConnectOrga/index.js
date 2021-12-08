@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { FormConnect } from '../../molecules';
 
-const ConnectOrga = ({ setTokenHeader, user }) => {
+const ConnectOrga = ({ setTokenHeader }) => {
 
     return (
         <Container>
-            <FormConnect setTokenHeader={ setTokenHeader } user={ user } />
+            <FormConnect setTokenHeader={ setTokenHeader } />
         </Container>
     );
 }
