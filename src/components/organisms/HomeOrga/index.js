@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { ListProduct } from '../../molecules';
 
-const HomeOrga = () => {
+const HomeOrga = ({ tokenHeader }) => {
 
     return (
         <Container>
-            <ListProduct />
+            <ListProduct tokenHeader={ tokenHeader } />
         </Container>
     );
 }

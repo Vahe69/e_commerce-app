@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+# Projet de création d'un site e-commerce.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Nous sommes sur le repertoire front-end.
 
-## Available Scripts
+## Pour commencer.
 
-In the project directory, you can run:
+Lancez une invite de commande Git et déplacez vous dans le répertoire souhaiter.
+Exécutez un git clone du répertoire git en exécutant cette commande : 
 
-### `yarn start`
+```git clone https://github.com/Vahe69/e_commerce-app.git```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Une fois la commande terminer, déplacez vous dans le répertoire git.
+Puis exécutez la commande suivante : 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```npm install```
 
-### `yarn test`
+## Pour lancer l'application
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Par la suite, après que la commande soit terminer, vous devez lancer l'application react.
+Pour ce faire, vous devez exécuter la commande :
 
-### `yarn build`
+```yarn start```
+ou
+```npm start```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Par la suite, une fenêtre internet va s'ouvrir ou rendez vous sur l'url suivante : [http://localhost:3000](http://localhost:3000). Vous allez pouvoir tester l'application.
+Mais avant de la tester, vous devez lancer la partie back-end.
+Suivez l'installation et le lancement de celle-ci sur [https://github.com/Vahe69/e-commerce-app-back](https://github.com/Vahe69/e-commerce-app-back).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Explication de l'application
 
-### `yarn eject`
+L'application est une application react qui est découper en partie. C'est-à-dire qu'elle a une Atomic design.
+Et donc elle peut facilement être lu et comprise par tous.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Dans l'application, il y a plusieurs pages :
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Page d'accueil: "/"
+    - Elle liste tous les produits de notre site et de plus, nous pouvons trouver un header, avec la possibilité de changer en fonction de la connexion de l'utilisateur, et un footer.
+    - De plus, si l'utilisateur est connecter, il pourra commander les produits de notre site.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Page de connexion: "/userConnect"
+    - Elle est composé du header et d'un formulaire de connexion permettant à l'utilisateur de se connecter ou de s'enregistrer.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Page d'enregistrement: "/newUser"
+    - Elle est composé du header et d'un formulaire d'enregistrement permettant à l'utilisateur de s'enregistrer sur notre site.
 
-## Learn More
+- Page du compte: "/userCompte"
+    - Elle est composé du header, du footer et la liste des informations de l'utilisateur avec les commandes qu'il a réaliser.
+    - Cette page est accésible uniquement lorsque l'on est connecter.
+    - Lorsque l'utilisateur n'est pas connecter, il sera rediriger vers la page d'erreur.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Page d'erreur: "/404"
+    - Elle est composé d'un message d'erreur qui nous imforme que l'application n'a pas trouver la page correspondant à l'url.
+    - Donc si l'utilisateur essaye de chercher une page inexistante, il sera rediriger vers cette page.

@@ -3,7 +3,7 @@ import { Image, Label } from '../../atoms';
 import styled from 'styled-components';
 import axios from 'axios';
 
-const ListProduct = () => {
+const ListProduct = ({ tokenHeader }) => {
 
     const [listProduct, setListProduct] = useState([]);
 
@@ -82,7 +82,11 @@ const ListProduct = () => {
                             <Label attribut={e.name} style={styleLabel}/>
                             <Label attribut={e.description} style={styleLabelDesc}/>
                             <Label attribut={price} style={styleLabel}/>
-                            <Label id={key} attribut="Commander" style={styleLabelCom} onClick={ handleCommander }/>
+                            { tokenHeader === "" ?
+                                <Label id={key} attribut="Commander" style={styleLabelCom} onClick={ handleCommander }/>
+                                :
+                                <></>
+                            }
                         </DivProduct>
                     )
                 })}

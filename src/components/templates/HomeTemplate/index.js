@@ -6,7 +6,7 @@ const HomeTemplate = ({ tokenHeader }) => {
     return (
         <Container>
             <Header tokenHeader={ tokenHeader } />
-            <HomeOrga />
+            <HomeOrga tokenHeader={ tokenHeader } />
             <Footer />
         </Container>
     );
