@@ -6,7 +6,9 @@ import styled from 'styled-components';
 const Logo = () => {
 
     const styleLogo = {
-        width: "25%"
+        width: "25%",
+        padding: "5px",
+        borderRadius: "10%"
     }
 
     return (
