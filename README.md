@@ -53,3 +53,7 @@ Dans l'application, il y a plusieurs pages :
 - Page d'erreur: "/404"
     - Elle est composé d'un message d'erreur qui nous imforme que l'application n'a pas trouver la page correspondant à l'url.
     - Donc si l'utilisateur essaye de chercher une page inexistante, il sera rediriger vers cette page.
+
+Fait par : 
+    - THOBOIS Antonin.
+    - ODIN Anthony.
