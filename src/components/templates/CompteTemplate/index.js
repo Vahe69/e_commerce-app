@@ -6,7 +6,7 @@ const CompteTemplate = ({ tokenHeader }) => {
     return (
         <Container>
             <Header tokenHeader={ tokenHeader } />
-            <CompteOrga />
+            <CompteOrga tokenHeader={ tokenHeader } />
             <Footer />
         </Container>
     );

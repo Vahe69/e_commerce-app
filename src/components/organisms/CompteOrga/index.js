@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Label } from '../../atoms';
 import { UserCompte } from '../../molecules';
 
-const CompteOrga = () => {
+const CompteOrga = ({ tokenHeader }) => {
 
     const styleTitle = {
         "fontWeight": "800",
@@ -13,7 +13,7 @@ const CompteOrga = () => {
     return (
         <Container>
             <Label attribut="Information de votre compte" style={ styleTitle } />
-            <UserCompte/>
+            <UserCompte tokenHeader={ tokenHeader }/>
         </Container>
     );
 }

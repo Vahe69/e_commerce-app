@@ -5,6 +5,7 @@ import { CompteTemplate } from "../../components/templates";
 
 const Compte = ({ tokenHeader }) => {
 
+    // Si l'utilisateur n'est pas connecter, il sera rediriger sur la page d'erreur.
     if(tokenHeader === ""){
         return <Redirect to="/404" />
     }else{

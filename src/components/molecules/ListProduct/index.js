@@ -5,15 +5,15 @@ import axios from 'axios';
 
 const ListProduct = ({ tokenHeader }) => {
 
+    // On initialise un tableau pour la liste des produits.
     const [listProduct, setListProduct] = useState([]);
 
     useEffect(() => {
         const fetchProduct = async () => {
             axios.get(process.env.REACT_APP_URL_API + 'products')
                 .then((response) => {
-                    setListProduct(response.data);
+                    setListProduct(response.data); // On remplit le tableau avec la liste des produits.
                 }).catch((error) => {
-                    console.log(error.message);
                     var messError = document.getElementById("messError");
                     messError.style.display = "block";
                     messError.innerHTML = "Une erreur est survenue.";
@@ -61,6 +61,7 @@ const ListProduct = ({ tokenHeader }) => {
         "border": "solid 2px"
     }
 
+    // Quand l'utilisateur clique sur le bouton Commander et commande le produit.
     const handleCommander = (event) => {
         console.log(event.target.id);
     }
@@ -71,6 +72,7 @@ const ListProduct = ({ tokenHeader }) => {
 
             <Label attribut="Liste des produits:" style={ styleTitle }/>
             <DivProducts>
+                {/* Pour chaque produit, on va afficher l'image, son nom, sa description, etc... */}
                 { listProduct.map(e => {
                     const key = e.id;
                     const img = image + e.image;
@@ -82,7 +84,7 @@ const ListProduct = ({ tokenHeader }) => {
                             <Label attribut={e.name} style={styleLabel}/>
                             <Label attribut={e.description} style={styleLabelDesc}/>
                             <Label attribut={price} style={styleLabel}/>
-                            { tokenHeader === "" ?
+                            { tokenHeader !== "" ?
                                 <Label id={key} attribut="Commander" style={styleLabelCom} onClick={ handleCommander }/>
                                 :
                                 <></>

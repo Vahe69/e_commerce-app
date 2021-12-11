@@ -3,10 +3,9 @@ import { Label } from '../../atoms';
 import styled from 'styled-components';
 import axios from 'axios';
 
-const UserCompte = () => {
+const UserCompte = ({ tokenHeader }) => {
 
-    const tokenHeader = localStorage.getItem("tokenHeader");
-
+    // On initialise la variable user.
     const [user, setUser] = useState();
 
     useEffect(() => {
@@ -16,9 +15,10 @@ const UserCompte = () => {
                     'Authorization': tokenHeader
                 }
             }).then((response) => {
-                setUser(response.data);
+                setUser(response.data); // On change la variable user avec les informations de l'utilisateur connecter.
             }).catch((error) => {
-                console.log(error);
+                // Si le token de l'utilisateur n'est pas correcte ou est expiré, on clear le stockage local, on affiche une boite de dialogue pour avertir l'utilisateur et on le redirige vers la page d'accueil.
+                // (le temps d'expiration peut être changer dans la partie back-end, dans le fichier app.module.ts).
                 if(error.response.status === 401){
                     var storage = window.localStorage;
                     storage.clear();
@@ -52,7 +52,7 @@ const UserCompte = () => {
     return (
         <Container>
             <Label id="messError" style={ styleLabelError }/>
-            {user ? 
+            {user ? // On regarde si l'utilisateur a bien été trouver dans la base de données.
             <>
                 <DivInfo>
                     <Label attribut="Email : " style={styleLabel} />

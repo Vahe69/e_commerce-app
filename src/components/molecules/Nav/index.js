@@ -4,11 +4,13 @@ import styled from 'styled-components';
 
 const Nav = ({ tokenHeader }) => {
 
+    // Si l'utilisateur clique sur le bouton déconnexion, on clear le stockage local de l'utilisateur pour déconnecter l'utilisateur.
     const handleDeco = () => {
         const localStorage = window.localStorage;
         localStorage.clear();
     }
 
+    // Une fonction qui retourne le bouton Accueil.
     const aHome = () => {
         return(
             <a href="/">Accueil</a>
@@ -20,11 +22,13 @@ const Nav = ({ tokenHeader }) => {
                 <Li attribut={aHome()}/>
             {(() => {
                 if(tokenHeader !== ""){
+                    // Une fonction qui retourne le bouton Mon compte.
                     const aCompte = () => {
                         return(
                             <a href="/userCompte">Mon compte</a>
                         )
                     }
+                    // Une fonction qui retourne le bouton Déconnexion.
                     const aDeco = () => {
                         return(
                             <a href="/">Déconnexion</a>
@@ -35,6 +39,7 @@ const Nav = ({ tokenHeader }) => {
                         <Li attribut={aDeco()} onClick={ handleDeco }/>
                     </>)
                 }else{
+                    // Une fonction qui retourne le bouton Se connecter.
                     const aConnec = () => {
                         return(
                             <a href="/userConnect">Se connecter</a>

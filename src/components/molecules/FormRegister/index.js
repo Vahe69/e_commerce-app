@@ -4,12 +4,15 @@ import styled from "styled-components";
 import axios from 'axios';
 
 const FormRegister = () => {
+
+    // On initialise les variables suivantes.
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [verifiedPassword, setVerifiedPassword] = React.useState("");
     const [nom, setNom] = React.useState("");
     const [prenom, setPrenom] = React.useState("");
 
+    // Pour chaque changement de l'input suivant, on change la variable correspondante.
     const handleEmailChange = (event) => { 
         setEmail(event.target.value);
     }
@@ -60,6 +63,7 @@ const FormRegister = () => {
         "fontSize" : "18px"
     }
 
+    // Une fois que l'utilisateur a remplir les différents input et appuyer sur le bouton enregistrer, on va envoyer une requête au back-end pour créer l'utilisateur.
     const handleSubmit = (event) => {
         event.preventDefault();
         axios.post(process.env.REACT_APP_URL_API + 'users/add', {
@@ -69,8 +73,8 @@ const FormRegister = () => {
             nom,
             prenom
         }).then((response) => {
-            window.alert("Votre compte a été créer, veuillez vous connecter");
-            window.location = window.location.origin + "/userConnect";
+            window.alert("Votre compte a été créer, veuillez vous connecter"); // On lui indique que son compte a été créer.
+            window.location = window.location.origin + "/userConnect"; // On le redirige vers la page de connexion.
         }).catch((error) => {
             var messError = document.getElementById("messError");
             messError.style.display = "block";
