@@ -63,7 +63,18 @@ const ListProduct = ({ tokenHeader }) => {
 
     // Quand l'utilisateur clique sur le bouton Commander et commande le produit.
     const handleCommander = (event) => {
-        console.log(event.target.id);
+        console.log(tokenHeader);
+        axios.post(process.env.REACT_APP_URL_API + 'users/commande/' + event.target.id, {}, {
+            headers : {
+                'Authorization': tokenHeader
+            }
+        }).then((response) => {
+            window.alert("Votre commande a bien été effectuer.");
+        }).catch((error) => {
+            var messError = document.getElementById("messError");
+            messError.style.display = "block";
+            messError.innerHTML = "Une erreur est survenue";
+        })
     }
 
     return (

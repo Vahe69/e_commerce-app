@@ -12,7 +12,7 @@ Exécutez un git clone du répertoire git en exécutant cette commande :
 Une fois la commande terminer, déplacez vous dans le répertoire git.
 Puis exécutez la commande suivante : 
 
-```npm install```
+```npm install``` ou ```yarn install```
 
 ## Pour lancer l'application
 
